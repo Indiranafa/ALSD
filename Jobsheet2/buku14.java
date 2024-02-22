@@ -3,7 +3,7 @@ package Jobsheet2;
 public class buku14 {
 
     String judul, pengarang;
-    int halaman, stok, harga;
+    int halaman, stok, harga, diskon, hargaTotal, hargaBayar;
     
     void tampilInformasi(){
         System.out.println("Judul: " + judul);
@@ -11,6 +11,10 @@ public class buku14 {
         System.out.println("Jumlah halaman: " + halaman);
         System.out.println("Sisa Stok: " + stok);
         System.out.println("Harga: Rp " + harga);
+        System.out.println("Harga Total: " + hargaTotal);
+        System.out.println("Harga Diskon: " + diskon);
+        System.out.println("Harga Bayar: " + hargaBayar);
+        
     }
 
     void terjual(int jml){
@@ -22,6 +26,8 @@ public class buku14 {
         } else {
             System.out.println("Stok habis. Tidak dapat menjual buku.");
         }
+
+        hitungHargaTotal(jml);
     }
 
     void restock(int jml){
@@ -32,24 +38,22 @@ public class buku14 {
         harga = hrg;
     }
 
-    int hitungHargaTotal(int jmlBukuTerjual) {
-        return harga * jmlBukuTerjual;
+    void hitungHargaTotal(int jmlBukuTerjual) {
+        hargaTotal = harga * jmlBukuTerjual;
+        hitungDiskon();
     }
 
-    int hitungDiskon(int hargaTotal) {
+    void hitungDiskon() {
         if (hargaTotal > 150000) {
-            return (int) (0.12 * hargaTotal);
+            diskon = (int) (0.12 * hargaTotal);
         } else if (hargaTotal >= 75000 && hargaTotal <= 150000) {
-            return (int) (0.05 * hargaTotal);
-        } else {
-            return 0;
+            diskon = (int) (0.05 * hargaTotal);
         }
+        hitungHargaBayar();
     }
 
-    int hitungHargaBayar(int jmlBukuTerjual) {
-        int totalHarga = hitungHargaTotal(jmlBukuTerjual);
-        int diskon = hitungDiskon(totalHarga);
-        return totalHarga - diskon;
+    void hitungHargaBayar() {
+        hargaBayar = (int) (hargaTotal - diskon);
     }
 
     public buku14() {

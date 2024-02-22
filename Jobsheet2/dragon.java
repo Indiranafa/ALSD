@@ -16,26 +16,30 @@ public class dragon {
     public void moveLeft() {
         x--;
         detectCollision();
+        System.out.println("Dragon position Left: (" + x + ", " + y + ")");
     }
 
     public void moveRight() {
         x++;
         detectCollision();
+        System.out.println("Dragon position Right: (" + x + ", " + y + ")");
     }
 
     public void moveUp() {
         y--;
         detectCollision();
+        System.out.println("Dragon position Up: (" + x + ", " + y + ")");
     }
 
     public void moveDown() {
         y++;
         detectCollision();
+        System.out.println("Dragon position Down: (" + x + ", " + y + ")");
     }
 
-    public void printPosition() {
-        System.out.println("Dragon position: (" + x + ", " + y + ")");
-    }
+    // public void printPosition() {
+    //     System.out.println("Dragon position: (" + x + ", " + y + ")");
+    // }
 
     public void detectCollision() {
         if (x < 0 || x >= width || y < 0 || y >= height) {
